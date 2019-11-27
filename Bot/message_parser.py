@@ -87,7 +87,7 @@ def init(client):
                     if a_id not in raid[1] or a_id == h_id:
                         if len(raid[1]) < 4:
                             raid[1].append(a_id)
-                            await author.send("FC: " + db_handler.get_fc(h_id) + "\nRaid code: " + raid[1])
+                            await author.send("FC: " + db_handler.get_fc(h_id) + "\nRaid code: " + raid[0])
                             await context.send("Joined raid!")
                         else:
                             await context.send("Raid already full!")
@@ -132,7 +132,7 @@ def init(client):
                 if a_id in raids:
                     raid = raids[a_id]
                     if u_id in raid[1]:
-                        raid[1].remove(a_id)
+                        raid[1].remove(u_id)
                         await context.send("Kicked " + user.name + " out of the raid!")
                     else:
                         await context.send(user.name + " is not participating in that raid!")
