@@ -5,8 +5,6 @@
 import json
 import os
 
-import discord
-
 data = "../data.json"
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, data)
@@ -20,5 +18,21 @@ with open(filename, "r+") as f:
     db = json.load(f)
     f.close()
 
-if "songs" not in db:
+if "FCs" not in db:
     db['FCs'] = {}
+
+
+def write():
+    with open(filename, "w+") as file:
+        json.dump(db, file)
+        file.truncate()
+        file.close()
+
+
+def set_fc(u_id, fc):
+    db['FCs'][str(u_id)] = fc
+    write()
+
+
+def get_fc(u_id):
+    return db['FCs'][str(u_id)]
