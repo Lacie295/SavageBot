@@ -84,9 +84,9 @@ def init(client):
                 h_id = host.id
                 if h_id in raids:
                     raid = raids[h_id]
-                    if a_id not in raid[2] or a_id == h_id:
-                        if len(raid[2]) < 4:
-                            raid[2].append(a_id)
+                    if a_id not in raid[1] or a_id == h_id:
+                        if len(raid[1]) < 4:
+                            raid[1].append(a_id)
                             await author.send("FC: " + db_handler.get_fc(h_id) + "\nRaid code: " + raid[1])
                             await context.send("Joined raid!")
                         else:
@@ -109,8 +109,8 @@ def init(client):
                 if h_id != a_id:
                     if h_id in raids:
                         raid = raids[h_id]
-                        if a_id in raid[2]:
-                            raid[2].remove(a_id)
+                        if a_id in raid[1]:
+                            raid[1].remove(a_id)
                             await context.send("Left raid!")
                         else:
                             await context.send("You are not participating in that raid!")
@@ -131,8 +131,8 @@ def init(client):
                 u_id = user.id
                 if a_id in raids:
                     raid = raids[a_id]
-                    if u_id in raid[2]:
-                        raid[2].remove(a_id)
+                    if u_id in raid[1]:
+                        raid[1].remove(a_id)
                         await context.send("Kicked " + user.name + " out of the raid!")
                     else:
                         await context.send(user.name + " is not participating in that raid!")
@@ -147,7 +147,7 @@ def init(client):
             author = m.author
             a_id = author.id
             if a_id in raids:
-                raid = raids[a_id][2]
+                raid = raids[a_id][1]
                 s = author.name
                 for u_id in raid:
                     user = client.get_user(u_id)
@@ -155,6 +155,5 @@ def init(client):
                 await context.send("Currently in the raid:\n" + s)
             else:
                 await context.send("You are currently not hosting a raid.")
-
 
     client.add_cog(Pokemon())
