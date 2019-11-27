@@ -141,4 +141,20 @@ def init(client):
             else:
                 await context.send("Please provide an user.")
 
+        @commands.command(pass_context=True)
+        async def list(self, context):
+            m = context.message
+            author = m.author
+            a_id = author.id
+            if a_id in raids:
+                raid = raids[a_id][2]
+                s = author.name
+                for u_id in raid:
+                    user = client.get_user(u_id)
+                    s += "\n" + user.name
+                await context.send("Currently in the raid:\n" + s)
+            else:
+                await context.send("You are currently not hosting a raid.")
+
+
     client.add_cog(Pokemon())
