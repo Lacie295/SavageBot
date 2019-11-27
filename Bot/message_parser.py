@@ -87,7 +87,7 @@ def init(client):
                     if a_id not in raid[2] or a_id == h_id:
                         if len(raid[2]) < 4:
                             raid[2].append(a_id)
-                            await author.send("Raid code: " + raid[1])
+                            await author.send("FC: " + db_handler.get_fc(h_id) + "\nRaid code: " + raid[1])
                             await context.send("Joined raid!")
                         else:
                             await context.send("Raid already full!")

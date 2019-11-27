@@ -35,4 +35,4 @@ def set_fc(u_id, fc):
 
 
 def get_fc(u_id):
-    return db['FCs'][str(u_id)]
+    return db['FCs'][str(u_id)] if str(u_id) in db['FCs'] else "No FC provided."
